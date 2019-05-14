@@ -1,0 +1,52 @@
+{% extends 'list_app/layout.html' %}
+
+{% block title %}UserPage{% endblock %}
+
+{% block header %}
+<h1>UserPage</h1>
+{% endblock %}
+
+{% block content %}
+<table class="search_form">
+<form action="{% url 'user' %}" method="post">
+    {% csrf_token %}
+    <tr>
+        <th><label for="search_name">ユーザー名</label></th>
+        <th><input id="search_name" type="text" name="search_name"></th>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="ユーザー検索"></td>
+    </tr>
+</form>
+</table>
+<p>
+    <a href="{% url 'createuser' %}">新規ユーザー追加</a>&nbsp;&nbsp;
+    <a href="{% url 'broadcastuser' %}" target="_blank">一括メール送信</a>
+</p>
+<hr>
+<table class="clientpage_table" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>ユーザー名</th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+        <th></th>
+        <th>登録日</th>
+        <th></th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.tel_number}}</td>
+        <td>{{item.mail}}</td>
+        <th>{{item.status}}</th>
+        <td><a href="{% url 'sendmailuser' item.id %}" target="_blank">メール作成</a></td>
+        <td>{{item.regddate}}</td>
+        <td><a href="{% url 'editclient' item.id %}">編集する</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

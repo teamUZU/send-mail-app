@@ -1,0 +1,19 @@
+body {
+    color:gray;
+    font-size:12px;
+}
+h1 {
+    color:lightgreen;
+    opacity:0.8;
+    font-size:60px;
+    margin-top:-20px;
+    margin-bottom:0px;
+    text-align:right;
+}
+p {
+    margin:10px;
+}
+a {
+    color:lightgreen;
+    text-decoration:none;
+}
