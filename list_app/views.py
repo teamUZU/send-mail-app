@@ -93,7 +93,7 @@ def editclient(request, num):
     if (request.method == 'POST'):
         client = EditclientForm(request.POST, instance=obj)
         client.save()
-        return redirect(to='/list_app/client')
+        return redirect(to='client')
     params = {
         'login_account':request.user,
         'form':EditclientForm(instance=obj),
@@ -107,7 +107,7 @@ def edituser(request, num):
     if (request.method == 'POST'):
         user = EdituserForm(request.POST, instance=obj)
         user.save()
-        return redirect(to='/list_app/user')
+        return redirect(to='user')
     params = {
         'login_account':request.user,
         'form':EdituserForm(instance=obj),

@@ -45,7 +45,7 @@
         <th>{{item.status}}</th>
         <td><a href="{% url 'sendmailuser' item.id %}" target="_blank">メール作成</a></td>
         <td>{{item.regddate}}</td>
-        <td><a href="{% url 'editclient' item.id %}">編集する</a></td>
+        <td><a href="{% url 'edituser' item.id %}">編集する</a></td>
     </tr>
     {% endfor %}
 </table>
