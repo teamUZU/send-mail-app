@@ -67,7 +67,7 @@ def createclient(request):
         status = request.POST['status']
         client = Client(name=name, tel_number=tel_number, mail=mail, regddate=regddate, status=status)
         client.save()
-        return redirect(to='/list_app/client')
+        return redirect(to='client')
     return render(request, 'list_app/createclient.html', params)
 
 # createuserのビュー関数
@@ -84,7 +84,7 @@ def createuser(request):
         status = request.POST['status']
         user = User(name=name, tel_number=tel_number, mail=mail, regddate=regddate, status=status)
         user.save()
-        return redirect(to='/list_app/user')
+        return redirect(to='user')
     return render(request, 'list_app/createuser.html', params)
 
 # editclientのビュー関数
@@ -92,7 +92,8 @@ def editclient(request, num):
     obj = Client.objects.get(id=num)
     if (request.method == 'POST'):
         client = EditclientForm(request.POST, instance=obj)
-        client.save()
+        if client.is_valid():
+            client.save()
         return redirect(to='client')
     params = {
         'login_account':request.user,
@@ -106,7 +107,8 @@ def edituser(request, num):
     obj = User.objects.get(id=num)
     if (request.method == 'POST'):
         user = EdituserForm(request.POST, instance=obj)
-        user.save()
+        if user.is_valid():
+            user.save()
         return redirect(to='user')
     params = {
         'login_account':request.user,
